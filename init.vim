@@ -96,6 +96,7 @@ set scrolloff=10
 set colorcolumn=80
 set signcolumn=yes
 set number
+set splitright
 syntax on
 
 let mapleader = " "
@@ -121,7 +122,8 @@ autocmd FileType java nnoremap <leader>bb :terminal ./gradlew build<CR>
 autocmd FileType java nnoremap <leader>bd :terminal ./gradlew deploy<CR>
 
 "build cmake
-autocmd FileType cpp nnoremap <leader>bb :terminal make<CR>
+autocmd FileType cpp nnoremap <leader>bb :vsplit<CR> :ter make<CR> <cmd>:startinsert<CR>
+
 
 let g:floaterm_keymap_new = '<Leader>ft'
 let g:floaterm_keymap_toggle = '<Leader>t'
