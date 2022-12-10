@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "remark-language-server": "^2.0.0"
+  }
+}

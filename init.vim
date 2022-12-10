@@ -70,6 +70,8 @@ lua require('newconfig')
 lua require('nvim_lsp')
 lua require('snips')
 lua require('keybind')
+lua require('check_list')
+lua require('notes')
 
 "let g:airline_theme='base16_gruvbox_dark_hard'
 let g:nord_contrast = v:true
@@ -117,9 +119,12 @@ nnoremap <leader>hc <cmd>lua require('telescope.builtin').commands()<cr>
 nnoremap <leader>fnt <cmd>lua require('telescope').extensions.file_browser.file_browser({cwd='~/Documents/Notes'})<cr>
 
 "build gradlew
-autocmd FileType python nnoremap <leader>bb :terminal python3 main.py<CR>
-autocmd FileType java nnoremap <leader>bb :terminal ./gradlew build<CR>
-autocmd FileType java nnoremap <leader>bd :terminal ./gradlew deploy<CR>
+autocmd FileType python nnoremap <leader>bb :vsplit<CR> :terminal python3 main.py<CR> <cmd>:startinsert<CR>
+
+autocmd FileType java nnoremap <leader>bb :vsplit<CR> :terminal ./gradlew build<CR> <cmd>:startinsert<CR>
+
+autocmd FileType java nnoremap <leader>bd :vsplit<CR> :terminal ./gradlew deploy<CR> <cmd>:startinsert<CR>
+
 
 "build cmake
 autocmd FileType cpp nnoremap <leader>bb :vsplit<CR> :ter make<CR> <cmd>:startinsert<CR>

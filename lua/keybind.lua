@@ -12,3 +12,6 @@ keymap('n', '<s-h>', '<c-w><', opts)
 --keymap('n', '<s-l>', ':vertical-resize +5<CR>', opts)
 
 keymap('n', '<space><space>s', '<cmd>:so ~/.config/nvim/lua/snips.lua<CR>', opts)
+keymap('n', '<space><space>n', '<cmd>:OpenNotes<CR>', opts)
+keymap('n', '<space><space>cn', '<cmd>:CreateNote<CR>', opts)
+keymap('n', '<space><space>cl', "<cmd>:SetupCheck<CR>", opts)

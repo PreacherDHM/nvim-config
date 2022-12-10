@@ -29,11 +29,17 @@ vim.keymap.set({ "i", "n" }, "<c-j>", function()
     end
 end, { silent = true })
 
-vim.keymap.set('i', "<c-l>", function()
-    if ls.choice_active() then
-        ls.change_choice(1)
+vim.keymap.set({ "i", "n" }, "<c-l>", function()
+    if ls.jumpable(1) then
+        ls.jump(1)
     end
-end)
+end, { silent = true })
+
+--vim.keymap.set('i', "<c-l>", function()
+--    if ls.choice_active() then
+--        ls.change_choice(1)
+--    end
+--end)
 
 ls.add_snippets("java", {
     s("jdoc",

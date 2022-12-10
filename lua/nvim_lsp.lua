@@ -1,3 +1,13 @@
+require("nvim-lsp-installer").setup({
+    automatic_installation = true, -- automatically detect which servers to install (based on which servers are set up via lspconfig)
+    ui = {
+        icons = {
+            server_installed = "✓",
+            server_pending = "➜",
+            server_uninstalled = "✗"
+        }
+    }
+})
 local opts = { noremap = true, silent = true }
 vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
 vim.keymap.set('n', 'ep', vim.diagnostic.goto_prev, opts)
@@ -38,6 +48,10 @@ require 'lspconfig'.pyright.setup {
     on_attach = on_attach
 }
 
+require 'lspconfig'.rome.setup {
+    capabilities = capabilities,
+    on_attach = on_attach
+}
 
 require 'lspconfig'.jdtls.setup {
     use_lombok_agent = true,
@@ -46,7 +60,14 @@ require 'lspconfig'.jdtls.setup {
 
 require('lspconfig').sumneko_lua.setup {
     cmd = { '/home/preacher/Documents/Programming/lua-language-server/bin/lua-language-server' },
-    on_attach = on_attach
+    on_attach = on_attach,
+    settings = {
+        Lua = {
+            diagnostics = {
+            globals = { 'vim' }
+            }
+        }
+    }
 }
 
 require('lspconfig').yamlls.setup {
@@ -62,6 +83,10 @@ require'lspconfig'.clangd.setup{
     on_attach = on_attach,
 }
 
+require'lspconfig'.prosemd_lsp.setup{
+    capabilities = capabilities,
+    on_attach = on_attach,
+}
 --require'lspconfig'.ccls.setup{
 --    capabilities = capabilities,
 --    use_lombok_agent = true,
@@ -73,10 +98,10 @@ require'lspconfig'.cmake.setup{
     on_attach = on_attach,
 }
 
+
 vim.opt.completeopt = { "menu", "menuone", "noselect" }
 -- Setup nvim-cmp.
 local cmp = require 'cmp'
-
 cmp.setup({
     snippet = {
         expand = function(args)
