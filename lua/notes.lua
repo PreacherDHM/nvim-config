@@ -10,7 +10,7 @@ M.open_file_command = 'e'
 M.open_command = nil
 M.split_oreantation = 'Horz'
 M.open_notes = false
-M.glob_note_loc = '~/notes/'
+M.glob_note_loc = '~/.notes/'
 
 local create_simlink = function (opts)
     if opts.name ~= nil and M.glob_note_loc ~= nil then

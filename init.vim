@@ -18,6 +18,8 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-treesitter/playground'
 Plug 'L3MON4D3/LuaSnip'
 Plug 'jalvesaq/Nvim-R', {'branch': 'stable'}
+"sinps
+Plug 'rafamadriz/friendly-snippets'
 
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
@@ -47,6 +49,10 @@ Plug 'kyazdani42/nvim-web-devicons'
 "status bar
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+
+" markdown
+"Plug 'junegunn/vim-easy-align'
+Plug 'dhruvasagar/vim-table-mode'
 call plug#end()
 
 " - /home/preacher/.local/share/nvim/plugged/LuaSnip/
@@ -95,7 +101,7 @@ set hidden
 set nowrap
 set incsearch
 set scrolloff=10
-set colorcolumn=80
+set colorcolumn=80,100
 set signcolumn=yes
 set number
 set splitright
@@ -128,7 +134,10 @@ autocmd FileType java nnoremap <leader>bd :vsplit<CR> :terminal ./gradlew deploy
 
 "build cmake
 autocmd FileType cpp nnoremap <leader>bb :vsplit<CR> :ter make<CR> <cmd>:startinsert<CR>
+autocmd FileType cmake nnoremap <leader>bb :vsplit<CR> :terminal cmake .<CR> <cmd>:startinsert<CR>
 
+"Markdown HotKeys
+"nnoremap <leader>tm :TableModeToggle<CR> <cmd>:startinsert<CR>
 
 let g:floaterm_keymap_new = '<Leader>ft'
 let g:floaterm_keymap_toggle = '<Leader>t'

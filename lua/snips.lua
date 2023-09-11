@@ -35,11 +35,11 @@ vim.keymap.set({ "i", "n" }, "<c-l>", function()
     end
 end, { silent = true })
 
---vim.keymap.set('i', "<c-l>", function()
---    if ls.choice_active() then
---        ls.change_choice(1)
---    end
---end)
+vim.keymap.set('i', "<c-l>", function()
+    if ls.choice_active() then
+        ls.change_choice(1)
+    end
+end)
 
 ls.add_snippets("java", {
     s("jdoc",
@@ -75,3 +75,5 @@ ls.add_snippets("java", {
     sp("docb", "<b> $1 </b> $2"),
     sp("docpar", "<p> $1 </p>$2"),
 })
+require('luasnip').filetype_extend("javascript", { "javascriptreact" })
+require('luasnip').filetype_extend("javascript", { "html" })

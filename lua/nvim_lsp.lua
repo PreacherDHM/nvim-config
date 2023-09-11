@@ -17,6 +17,7 @@ vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
     -- Enable completion triggered by <c-x><c-o>
+    
     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
     -- Mappings.
@@ -41,7 +42,9 @@ end
 
 
 -- Setup lspconfig.
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+--local capabilities = require('cmp_nvim_lsp').default_capabilitie(vim.lsp.protocol.make_client_capabilities())
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
 
 require 'lspconfig'.pyright.setup {
     capabilities = capabilities,
@@ -87,11 +90,19 @@ require'lspconfig'.prosemd_lsp.setup{
     capabilities = capabilities,
     on_attach = on_attach,
 }
---require'lspconfig'.ccls.setup{
---    capabilities = capabilities,
---    use_lombok_agent = true,
---    on_attach = on_attach,
---}
+require'lspconfig'.ccls.setup{
+    capabilities = capabilities,
+    use_lombok_agent = true,
+    on_attach = on_attach,
+}
+
+require'lspconfig'.eslint.setup{
+    on_attach = on_attach
+}
+
+require'lspconfig'.tsserver.setup{
+    on_attach = on_attach
+}
 
 require'lspconfig'.cmake.setup{
     cmd = {'/home/preacher/.local/bin/cmake-language-server'},
@@ -112,7 +123,7 @@ cmp.setup({
         completion = cmp.config.window.bordered(),
         documentation = cmp.config.window.bordered(),
     },
-    mapping = cmp.mapping.preset.insert({
+    mapping = cmp.mapping.preset.insert({ 
         ['<C-b>'] = cmp.mapping.scroll_docs(-4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
         ['<C-Space>'] = cmp.mapping.complete(),
@@ -128,3 +139,7 @@ cmp.setup({
         { name = 'buffer' },
     })
 })
+require('luasnip.loaders.from_vscode').lazy_load()
+
+-- Allow jsx and tsx to use js snippets
+require('luasnip').filetype_extend('javascript', { 'javascriptreact', 'typescriptreact' })
